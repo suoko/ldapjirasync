@@ -140,7 +140,7 @@ def ldap_lookup_group(lname,lpassword,lgroup):
 
 	#c.search('ou=yourOU,dc=yourdomain,dc=com', '(&(objectCategory=person)(objectClass=User)(givenname=*) &(memberof=cn={},dc=foo,dc=bar) ', attributes=['mail']).format(lgroup)
 
-	c.search('ou=yourOU,dc=yourdomain,dc=com', '(&(objectCategory=person)(objectClass=User)(memberof=CN={},OU=Distribution_List_Services,OU=yourOU,DC=yourdomain,DC=com))'.format(lgroup), attributes=['mail'])
+	c.search('ou=yourOU,dc=yourdomain,dc=com', '(&(objectCategory=person)(objectClass=User)(memberof=CN={},OU=otherRelevantOU,OU=yourOU,DC=yourdomain,DC=com))'.format(lgroup), attributes=['mail'])
 
 	emaillist = str(c.entries)
 	ldap_group_users = re.findall(r'[\w\.-]+@[\w\.-]+', emaillist)
